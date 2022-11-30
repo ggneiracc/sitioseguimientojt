@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// CLONACIÓN para turno noche 
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
 
 Route::middleware([
     'auth:sanctum',
