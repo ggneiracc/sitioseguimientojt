@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Estudiante;
 
 class PagesController extends Controller
 {
@@ -10,8 +11,14 @@ class PagesController extends Controller
         return view('welcome');
     }
 
+    public function fnEstDetalle($id) {
+        $xDetAlumnos = Estudiante::findOrFail($id); 
+        return view('Estudiante.PagDetalle', compact('xDetAlumnos'));
+    }
+
     public function fnLista () {
-        return view('pagLista');
+        $xAlumnos = Estudiante::all();
+        return view('pagLista', compact('xAlumnos'));
     }
 
     public function fnGaleria ($numero=0) {

@@ -1,9 +1,32 @@
 @extends('pagPlantilla')
 
 @section('titulo')
-    <h1> Página lista </h1>
+    <h1 class="display-4"> Página lista </h1>
 @endsection
 
 @section('seccion')
-    <h3> Lista </h1>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th scope="col">Código</th>
+                <th scope="col">Apellidos y Nombres</th>
+                <th scope="col">Semestre</th>
+                <th scope="col">Editar</th>
+            </tr>
+        </thead> 
+        <tbody>
+            @foreach($xAlumnos as $item)
+                <tr>
+                    <th scope="row">{{ $item->id }}</th>
+                    <td>
+                        <a href="{{ route('Estudiante.xDetalle', $item->id) }}">
+                            {{ $item->nomEst }}, {{ $item->nomEst }}
+                        </a>
+                    </td>
+                    <td>{{ $item->semMat }}</td>
+                    <td>@mdo</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection
