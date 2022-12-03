@@ -13,7 +13,7 @@ class PagesController extends Controller
 
     public function fnEstDetalle($id) {
         $xDetAlumnos = Estudiante::findOrFail($id); 
-        return view('Estudiante.PagDetalle', compact('xDetAlumnos'));
+        return view('Estudiante.pagDetalle', compact('xDetAlumnos'));
     }
 
     public function fnLista () {
