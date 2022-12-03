@@ -20,7 +20,7 @@
                     <th scope="row">{{ $item->id }}</th>
                     <td>
                         <a href="{{ route('Estudiante.xDetalle', $item->id) }}">
-                            {{ $item->nomEst }}, {{ $item->nomEst }}
+                            {{ $item->apeEst }}, {{ $item->nomEst }}
                         </a>
                     </td>
                     <td>{{ $item->semMat }}</td>
