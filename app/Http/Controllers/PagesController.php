@@ -13,6 +13,20 @@ class PagesController extends Controller
     public function fnLista () {
         return view('pagLista');
     }
+    
+    public function fnGaleria ($numero=0) {
+        $valor = $numero;
+        $otro = 25;
+        //return "Foto de codigo ".$numero;
+        //return view('pagGaleria', ['valor'=>$numero, 'otro'=>25]);
+        return view('pagGaleria', compact('valor','otro'));
+    }
+
+
+/*
+    public function fnLista () {
+        return view('pagLista');
+    }
 
     public function fnGaleria ($numero=0) {
         $valor = $numero;
@@ -21,4 +35,6 @@ class PagesController extends Controller
         //return view('pagGaleria', ['valor'=>$numero, 'otro'=>25]);
         return view('pagGaleria', compact('valor', 'otro'));
     }
+
+    */
 }
