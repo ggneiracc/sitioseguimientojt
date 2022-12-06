@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Estudiante;
 
 class PagesController extends Controller
 {
@@ -10,9 +11,22 @@ class PagesController extends Controller
         return view('welcome');
     }
 
-    public function fnLista () {
-        return view('pagLista');
+    //CREATE
+    public function fnRegistrar () {
+        return view('welcome');
     }
+
+
+    //READ
+    public function fnLista () {
+        $xAlumnos = Estudiante::all();
+        return view('pagLista', compact('xAlumnos'));
+    }
+    public function fnDetEstDetalle ($id) {
+        $xDetAlumnos = Estudiante::findOrFail($id);    //Datos de BD por id
+        return view('Estudiante.pagDetalle', compact('xDetAlumnos'));
+    }
+    
     
     public function fnGaleria ($numero=0) {
         $valor = $numero;
