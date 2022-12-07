@@ -1,7 +1,7 @@
 @extends('pagPlantilla') 
 
 @section('titulo')
-    <h1 class="display-4">Página de lista </h1>
+    <h1 class="display-4">Página actualizar </h1>
 @endsection
 
 @section('seccion')
@@ -67,53 +67,6 @@
     </form>
 
    
-    <div class="btn btn-dark d-grid fs-5 mb-2 bt-2">Lista de seguimiento...</div>
-    
-    <table class="table">
-        <thead class="table-secondary">
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Código</th>
-                <th scope="col">Apellidos, Nombres</th>
-                <th scope="col">Editar</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach($xAlumnos as $item)
-            <tr>
-                <th scope="row">{{ $item->id }}</th>
-                <td>{{ $item->codEst }}</td>
-                <td>
-                    <a href="{{ route('Estudiante.xDetalle', $item->id) }}">
-                        {{ $item->apeEst }}, {{ $item->nomEst }}
-                    </a>
-                </td>
-                <td>
-                    <form action="" method="post" class="d-inline">
-                        @method('DELETE')
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm">
-                            x
-                        </button>
-                    </form>
-                    ...
-                    <a class="btn btn-warning btn-sm" href="">
-                    A
-                    </a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-
-        <thead class="table-secondary">
-            <tr>
-                <th colspan="4">.</th>
-            </tr>
-        </thead>
-
-    </table>
-
- 
+    <div class="btn btn-dark d-grid fs-5 mb-2 bt-2">Lista de seguimiento...</div> 
    
 @endsection
