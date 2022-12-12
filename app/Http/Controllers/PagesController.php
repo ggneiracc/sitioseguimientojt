@@ -4,9 +4,92 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
+use App\Models\Seguimiento;
 
 class PagesController extends Controller
-{   
+{  
+     
+    //CREATE
+    public function fnRegistrarSeguimiento (Request $request) {
+            
+        //return $request;        //Verificando "token" y datos recibidos
+        
+        $request -> validate([
+            'idEst'=>'required',
+            'traAct'=>'required',
+            'ofiAct'=>'required',
+            'satEst'=>'required',
+            'fecSeg'=>'required',
+            'estSeg'=>'required'
+        ]);
+        
+        $nuevoSeguimiento = new Seguimiento;
+
+        $nuevoSeguimiento->idEst = $request->idEst;
+        $nuevoSeguimiento->traAct = $request->traAct;
+        $nuevoSeguimiento->ofiAct = $request->ofiAct;
+        $nuevoSeguimiento->satEst = $request->satEst;
+        $nuevoSeguimiento->fecSeg = $request->fecSeg;
+        $nuevoSeguimiento->estSeg = $request->estSeg;
+
+        $nuevoSeguimiento->save();   //Guardar en BD
+        
+        //$xAlumnos = Estudiante::all();                  //Datos de BD
+        //return view('pagLista', compact('xAlumnos'));   //Carga página
+        return back()->with('msj', 'Se registro con éxito en SEGUIMIENTO...');
+    }
+
+    //READ
+    public function fnListaSeguimiento () {
+        $xAlumnos = Estudiante::all();
+
+        $numOrden = 0;
+        $xAlumnosSeguimiento = Seguimiento::paginate(4);
+        return view('pagListaSeguimiento', compact('xAlumnosSeguimiento', 'numOrden', 'xAlumnos'));
+    }
+
+    public function fnEstDetalleSeg($id) {
+        $xDetAlumnosSeg = Seguimiento::findOrFail($id); 
+        return view('Estudiante.pagDetalleSeg', compact('xDetAlumnosSeg'));
+    }
+
+    //UPDATE
+    public function fnEstActualizarSeg ($id) {                 //ACTUALIZAR. PASO 1/2
+        $xActAlumnosSeg = Seguimiento::findOrFail($id); 
+        return view('Estudiante.pagActualizarSeg', compact('xActAlumnosSeg'));
+    }
+
+    public function fnUpdateSeg (Request $request, $id) {      //ACTUALIZAR. PASO 2/2
+        
+        //return $request;        //Verificando "token" y datos recibidos
+        $xUpdateSeguimiento = Seguimiento::findOrFail($id);
+        
+        $xUpdateSeguimiento->idEst = $request->idEst;
+        $xUpdateSeguimiento->traAct = $request->traAct;
+        $xUpdateSeguimiento->ofiAct = $request->ofiAct;
+        $xUpdateSeguimiento->satEst = $request->satEst;
+        $xUpdateSeguimiento->fecSeg = $request->fecSeg;
+        $xUpdateSeguimiento->estSeg = $request->estSeg;
+        
+        $xUpdateSeguimiento->save();   //Guardar en BD
+        
+        //$xAlumnos = Estudiante::all();                  //Datos de BD
+        //return view('pagLista', compact('xAlumnos'));   //Carga página
+        return back()->with('msj', 'Se ACTUALIZO con éxito el SEGUIMIENTO...');
+    }
+
+
+    //DELETE
+    public function fnEliminarSeg ($id) {
+        $deleteAlumno = Seguimiento::findOrFail($id);
+        $deleteAlumno->delete();
+        return back()->with('msj', 'Se eliminó con éxito el SEGUIMIENTO...');
+    }
+
+
+
+
+
     //PORTADA
     public function fnIndex () {
         return view('welcome');
