@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
 use App\Models\Seguimiento;
+use App\Models\Curso;
 
 class PagesController extends Controller
 { 
+    /*
      //CREATE
     public function fnRegistrarCurso (Request $request) {
         
@@ -37,12 +39,16 @@ class PagesController extends Controller
         //return view('pagLista', compact('xAlumnos'));   //Carga página
         return back()->with('msj', 'Se registro con éxito...');
     }
+    */
+
     //READ
     public function fnListaCurso () {
         //$xAlumnos = Estudiante::all();
         $xAlumnos = Estudiante::paginate(4);
         return view('pagLista', compact('xAlumnos'));
     }
+
+    /*
     public function fnEstDetalleCurso($id) {
         $xDetAlumnos = Estudiante::findOrFail($id); 
         return view('Estudiante.pagDetalle', compact('xDetAlumnos'));
@@ -76,7 +82,7 @@ class PagesController extends Controller
         $deleteAlumno->delete();
         return back()->with('msj', 'Se eliminó con éxito...');
     }
-    
+    */
     
      
     //CREATE
